@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — AccessShop</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <nav aria-label="Main navigation">
+      <a href="/index.html" class="logo" aria-label="AccessShop home">
+        <span aria-hidden="true">🛍️</span> AccessShop
+      </a>
+      <ul role="list">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/products.html">Shop</a></li>
+        <li><a href="/checkout.html" aria-current="page">Checkout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <h1>Checkout</h1>
+
+    <form id="checkout-form" novalidate aria-label="Checkout form">
+
+      <fieldset>
+        <legend>Contact Information</legend>
+
+        <div class="form-group">
+          <label for="firstName">First Name <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            aria-required="true"
+            autocomplete="given-name"
+          />
+          <span id="firstName-error" class="error" role="alert" hidden></span>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            aria-required="true"
+            autocomplete="family-name"
+          />
+          <span id="lastName-error" class="error" role="alert" hidden></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address <span aria-hidden="true">*</span></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            aria-required="true"
+            autocomplete="email"
+          />
+          <span id="email-error" class="error" role="alert" hidden></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Shipping Address</legend>
+
+        <div class="form-group">
+          <label for="address">Street Address <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            aria-required="true"
+            autocomplete="street-address"
+          />
+          <span id="address-error" class="error" role="alert" hidden></span>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            aria-required="true"
+            autocomplete="address-level2"
+          />
+          <span id="city-error" class="error" role="alert" hidden></span>
+        </div>
+
+        <div class="form-group">
+          <label for="zipCode">ZIP Code <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="zipCode"
+            name="zipCode"
+            aria-required="true"
+            autocomplete="postal-code"
+            inputmode="numeric"
+            pattern="[0-9]{5}"
+          />
+          <span id="zipCode-error" class="error" role="alert" hidden></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Payment Details</legend>
+
+        <div class="form-group">
+          <label for="cardNumber">Card Number <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="cardNumber"
+            name="cardNumber"
+            aria-required="true"
+            aria-describedby="cardNumber-hint"
+            autocomplete="cc-number"
+            inputmode="numeric"
+            maxlength="19"
+          />
+          <span id="cardNumber-hint" class="hint">Enter 16-digit card number</span>
+          <span id="cardNumber-error" class="error" role="alert" hidden></span>
+        </div>
+
+        <div class="form-group">
+          <label for="expiryDate">Expiry Date <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="expiryDate"
+            name="expiryDate"
+            aria-required="true"
+            aria-describedby="expiryDate-hint"
+            autocomplete="cc-exp"
+            placeholder="MM/YY"
+            maxlength="5"
+          />
+          <span id="expiryDate-hint" class="hint">Format: MM/YY</span>
+          <span id="expiryDate-error" class="error" role="alert" hidden></span>
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">CVV <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="cvv"
+            name="cvv"
+            aria-required="true"
+            aria-describedby="cvv-hint"
+            autocomplete="cc-csc"
+            inputmode="numeric"
+            maxlength="4"
+          />
+          <span id="cvv-hint" class="hint">3 or 4 digits on back of card</span>
+          <span id="cvv-error" class="error" role="alert" hidden></span>
+        </div>
+      </fieldset>
+
+      <button type="submit">Place Order</button>
+    </form>
+
+    <div id="success-message" role="alert" aria-live="polite" hidden>
+      <h2>Order Confirmed</h2>
+      <p>Thank you for your purchase. A confirmation email has been sent.</p>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2024 AccessShop. Built for accessibility testing demonstration.</p>
+  </footer>
+
+  <script src="checkout.js"></script>
+</body>
+</html>

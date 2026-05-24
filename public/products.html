@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — AccessShop</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <nav aria-label="Main navigation">
+      <a href="/index.html" class="logo" aria-label="AccessShop home">
+        <span aria-hidden="true">🛍️</span> AccessShop
+      </a>
+      <ul role="list">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/products.html" aria-current="page">Shop</a></li>
+        <li><a href="/checkout.html">Checkout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <h1>Products</h1>
+
+    <ul class="product-grid" role="list" aria-label="Product listing">
+
+      <li>
+        <article aria-label="Wireless Headphones product card">
+          <img
+            src="https://placehold.co/300x200/1a1a2e/ffffff?text=Headphones"
+            alt="Black over-ear wireless headphones with noise cancellation"
+            width="300"
+            height="200"
+          />
+          <div class="product-info">
+            <h2>Wireless Headphones</h2>
+            <p>Premium sound quality with 30-hour battery life and active noise cancellation.</p>
+            <p><span class="visually-hidden">Price: </span>$79.99</p>
+            <a href="/checkout.html" class="btn-primary" aria-label="Buy Wireless Headphones">
+              Add to Cart
+            </a>
+          </div>
+        </article>
+      </li>
+
+      <li>
+        <article aria-label="Mechanical Keyboard product card">
+          <img
+            src="https://placehold.co/300x200/1a1a2e/ffffff?text=Keyboard"
+            alt="Compact mechanical keyboard with RGB backlighting and tactile switches"
+            width="300"
+            height="200"
+          />
+          <div class="product-info">
+            <h2>Mechanical Keyboard</h2>
+            <p>Tactile switches with customizable RGB lighting. Compact 75% layout.</p>
+            <p><span class="visually-hidden">Price: </span>$129.99</p>
+            <a href="/checkout.html" class="btn-primary" aria-label="Buy Mechanical Keyboard">
+              Add to Cart
+            </a>
+          </div>
+        </article>
+      </li>
+
+      <li>
+        <article aria-label="USB-C Hub product card">
+          <img
+            src="https://placehold.co/300x200/1a1a2e/ffffff?text=USB+Hub"
+            alt="Silver 7-in-1 USB-C hub with HDMI, USB-A, and SD card ports"
+            width="300"
+            height="200"
+          />
+          <div class="product-info">
+            <h2>USB-C Hub</h2>
+            <p>7-in-1 hub with HDMI 4K, 3x USB-A, SD card, and 100W PD charging.</p>
+            <p><span class="visually-hidden">Price: </span>$49.99</p>
+            <p role="status" aria-live="polite">Out of stock</p>
+            <button disabled aria-disabled="true" aria-label="USB-C Hub is out of stock">
+              Out of Stock
+            </button>
+          </div>
+        </article>
+      </li>
+
+    </ul>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2024 AccessShop. Built for accessibility testing demonstration.</p>
+  </footer>
+</body>
+</html>

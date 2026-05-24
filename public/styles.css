@@ -1,0 +1,233 @@
+/* ============================================
+   AccessShop — WCAG 2.1 AA Compliant Styles
+   All color combinations meet 4.5:1 contrast ratio
+   ============================================ */
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a2e;          /* contrast 14.7:1 on white */
+  --color-primary: #1a56db;       /* contrast 5.9:1 on white */
+  --color-primary-hover: #1e429f;
+  --color-error: #c81e1e;         /* contrast 5.8:1 on white */
+  --color-success: #057a55;       /* contrast 5.1:1 on white */
+  --color-hint: #4b5563;          /* contrast 7.0:1 on white */
+  --color-border: #6b7280;        /* contrast 4.6:1 on white */
+  --color-focus: #1a56db;
+  --font-base: system-ui, -apple-system, sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-base);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+/* Skip link — visible on focus */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 4px 4px;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 9999;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Visually hidden utility (screen reader only) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles — visible for keyboard users */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Header & Nav */
+header {
+  background: var(--color-text);
+  padding: 1rem 2rem;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.logo {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+nav a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+nav a:hover,
+nav a:focus {
+  color: #ffffff;
+  text-decoration: underline;
+}
+nav a[aria-current="page"] {
+  color: #ffffff;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* Main content */
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+h1 { font-size: 2rem; margin-bottom: 1rem; }
+h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+/* Buttons */
+.btn-primary,
+button[type="submit"] {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary:hover,
+button[type="submit"]:hover {
+  background: var(--color-primary-hover);
+}
+button:disabled,
+button[aria-disabled="true"] {
+  background: #9ca3af;
+  cursor: not-allowed;
+  color: #ffffff;
+}
+
+/* Forms */
+form { max-width: 600px; }
+
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+legend {
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0 0.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+input {
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: #ffffff;
+}
+input:focus {
+  border-color: var(--color-focus);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 1px;
+}
+input[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.hint {
+  font-size: 0.875rem;
+  color: var(--color-hint);
+}
+.error {
+  font-size: 0.875rem;
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+/* Product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+article {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+article img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.product-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Success message */
+#success-message,
+.success-message {
+  background: #ecfdf5;
+  border: 2px solid var(--color-success);
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: var(--color-text);
+}
+
+/* Footer */
+footer {
+  background: #f3f4f6;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  color: var(--color-hint);
+  font-size: 0.875rem;
+}

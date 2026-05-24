@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AccessShop — Accessible Ecommerce Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <nav aria-label="Main navigation">
+      <a href="/index.html" class="logo" aria-label="AccessShop home">
+        <span aria-hidden="true">🛍️</span> AccessShop
+      </a>
+      <ul role="list">
+        <li><a href="/index.html" aria-current="page">Home</a></li>
+        <li><a href="/products.html">Shop</a></li>
+        <li><a href="/checkout.html">Checkout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Welcome to AccessShop</h1>
+      <p>An accessible ecommerce demo built to WCAG 2.1 AA standards.</p>
+      <a href="/products.html" class="btn-primary">Browse Products</a>
+    </section>
+
+    <section aria-labelledby="features-heading">
+      <h2 id="features-heading">Accessibility Features</h2>
+      <ul>
+        <li>Full keyboard navigation support</li>
+        <li>Screen reader compatible with ARIA landmarks</li>
+        <li>WCAG 2.1 AA color contrast compliance</li>
+        <li>Descriptive alt text on all images</li>
+        <li>Error messages linked to form fields</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2024 AccessShop. Built for accessibility testing demonstration.</p>
+  </footer>
+</body>
+</html>
