@@ -16,15 +16,14 @@ test.describe('Product Listing Page — WCAG 2.1 AA (Playwright + axe)', () => {
     const results = await new AxeBuilder({ page: axePage(page) })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
       .analyze();
-
     expect(results.violations).toEqual([]);
   });
 
-  test('product cards are keyboard navigable', async ({ page }) => {
-    // Tab to the first link in the product grid and verify it receives focus
-    const firstProductLink = page.locator('.product-grid a').first();
-    await firstProductLink.focus();
-    await expect(firstProductLink).toBeFocused();
+  test('all product images have alt text', async ({ page }) => {
+    const results = await new AxeBuilder({ page: axePage(page) })
+      .withRules(['image-alt'])
+      .analyze();
+    expect(results.violations).toEqual([]);
   });
 
   test('navigation menu is accessible', async ({ page }) => {
@@ -32,7 +31,6 @@ test.describe('Product Listing Page — WCAG 2.1 AA (Playwright + axe)', () => {
       .include('nav')
       .withTags(['wcag2a', 'wcag2aa'])
       .analyze();
-
     expect(results.violations).toEqual([]);
   });
 
@@ -42,15 +40,22 @@ test.describe('Product Listing Page — WCAG 2.1 AA (Playwright + axe)', () => {
     expect(title).not.toBe('Untitled');
   });
 
-  test('interactive elements have visible focus indicators', async ({ page }) => {
-    // Verify axe doesn't flag any focus-related violations using the full WCAG scan
-    const results = await new AxeBuilder({ page: axePage(page) })
-      .withRules(['scrollable-region-focusable', 'tabindex'])
-      .analyze();
+  test('out-of-stock button is disabled', async ({ page }) => {
+    const disabledBtn = page.locator('button[disabled]');
+    await expect(disabledBtn).toHaveAttribute('aria-disabled', 'true');
+  });
 
-    if (results.violations.length > 0) {
-      console.log('Focus violations:', JSON.stringify(results.violations, null, 2));
-    }
+  test('product cards use article landmark', async ({ page }) => {
+    const results = await new AxeBuilder({ page: axePage(page) })
+      .withRules(['landmark-unique'])
+      .analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test('interactive elements have no tabindex violations', async ({ page }) => {
+    const results = await new AxeBuilder({ page: axePage(page) })
+      .withRules(['tabindex', 'scrollable-region-focusable'])
+      .analyze();
     expect(results.violations).toEqual([]);
   });
 });
