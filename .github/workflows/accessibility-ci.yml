@@ -64,7 +64,7 @@ jobs:
   # ─────────────────────────────────────────────
   e2e-a11y:
     name: E2E Accessibility Tests (Playwright + axe)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: typecheck
     steps:
       - uses: actions/checkout@v4

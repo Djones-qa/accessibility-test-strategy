@@ -2,11 +2,10 @@
 
 [![Accessibility CI](https://github.com/Djones-qa/accessibility-test-strategy/actions/workflows/accessibility-ci.yml/badge.svg)](https://github.com/Djones-qa/accessibility-test-strategy/actions/workflows/accessibility-ci.yml)
 [![WCAG 2.1 AA](https://img.shields.io/badge/WCAG-2.1%20AA-blue?logo=w3c)](https://www.w3.org/WAI/WCAG21/quickref/)
-[![axe-core](https://img.shields.io/badge/axe--core-4.9.1-purple?logo=deque)](https://github.com/dequelabs/axe-core)
-[![Playwright](https://img.shields.io/badge/Playwright-1.44-green?logo=playwright)](https://playwright.dev)
+[![axe-core](https://img.shields.io/badge/axe--core-4.10.1-purple?logo=deque)](https://github.com/dequelabs/axe-core)
+[![Playwright](https://img.shields.io/badge/Playwright-1.49.1-green?logo=playwright)](https://playwright.dev)
 [![jest-axe](https://img.shields.io/badge/jest--axe-8.0-orange)](https://github.com/nickcolley/jest-axe)
 [![Pa11y](https://img.shields.io/badge/Pa11y-8.0-red)](https://pa11y.org)
-[![Storybook](https://img.shields.io/badge/Storybook-8.1-ff4785?logo=storybook)](https://storybook.js.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-3178c6?logo=typescript)](https://www.typescriptlang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
@@ -33,7 +32,7 @@ Accessibility testing is one of the most underrepresented skills in QA portfolio
 | **jest-axe** | Unit | Component-level axe assertions in Jest |
 | **@axe-core/playwright** | E2E | Full-page WCAG scans in browser via Playwright |
 | **Pa11y** | CLI Audit | Standalone WCAG 2.1 AA audits with JSON reports |
-| **Storybook + addon-a11y** | Component | Visual a11y panel with axe on every story |
+| **Storybook + addon-a11y** | Component | Visual a11y panel with axe on every story (see setup below) |
 | **GitHub Actions** | CI/CD | Accessibility gate on every PR |
 | **TypeScript** | DX | Full type safety across all test files |
 
@@ -74,6 +73,7 @@ accessibility-test-strategy/
 ├── tests/
 │   ├── __mocks__/
 │   │   └── styleMock.ts
+│   ├── setup.ts                         # Jest global setup (jest-dom)
 │   ├── unit/
 │   │   ├── CheckoutForm.a11y.test.tsx   # jest-axe unit tests
 │   │   ├── ProductCard.a11y.test.tsx
@@ -81,9 +81,13 @@ accessibility-test-strategy/
 │   └── e2e/
 │       ├── checkout.a11y.spec.ts        # Playwright + axe E2E tests
 │       └── product-listing.a11y.spec.ts
+├── types/
+│   ├── jest-axe.d.ts               # Type declarations for jest-axe
+│   └── pa11y.d.ts                  # Type declarations for pa11y
 ├── jest.config.ts
 ├── playwright.config.ts
 ├── tsconfig.json
+├── tsconfig.test.json
 └── package.json
 ```
 
@@ -122,6 +126,14 @@ npm run test:all
 
 ### Storybook
 
+Storybook requires a separate initialisation step. Run the following once to install it:
+
+```bash
+npx storybook init
+```
+
+Then start it with:
+
 ```bash
 npm run storybook
 ```
@@ -159,7 +171,7 @@ Full-page WCAG 2.1 AA scans in real Chromium and Firefox:
 - Screen reader announcement verification via `role="alert"` and `aria-live`
 
 ```typescript
-const results = await new AxeBuilder({ page })
+const results = await new AxeBuilder({ page: axePage(page) })
   .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
   .analyze();
 
@@ -177,7 +189,7 @@ Standalone WCAG 2.1 AA audit against all pages:
 
 ### Storybook + addon-a11y
 
-Every component story runs axe automatically:
+Every component story is pre-configured to run axe automatically once Storybook is initialised:
 
 - Violations shown in the **Accessibility** panel
 - Configured for `wcag2a`, `wcag2aa`, `wcag21aa` tags
