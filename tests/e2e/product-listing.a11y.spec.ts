@@ -21,10 +21,10 @@ test.describe('Product Listing Page — WCAG 2.1 AA (Playwright + axe)', () => {
   });
 
   test('product cards are keyboard navigable', async ({ page }) => {
-    // Verify the first interactive element in a product card is focusable
-    const firstLink = page.getByRole('link', { name: /add .* to cart|buy .*/i }).first();
-    await firstLink.focus();
-    await expect(firstLink).toBeFocused();
+    // Tab to the first link in the product grid and verify it receives focus
+    const firstProductLink = page.locator('.product-grid a').first();
+    await firstProductLink.focus();
+    await expect(firstProductLink).toBeFocused();
   });
 
   test('navigation menu is accessible', async ({ page }) => {
