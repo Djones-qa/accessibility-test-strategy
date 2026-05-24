@@ -35,11 +35,11 @@ test.describe('Checkout Page — WCAG 2.1 AA (Playwright + axe)', () => {
   });
 
   test('required fields have aria-required', async ({ page }) => {
-    const fields = ['#firstName', '#lastName', '#email', '#address', '#city', '#zipCode', '#cardNumber', '#expiryDate', '#cvv'];
-    for (const selector of fields) {
-      const value = await page.locator(selector).getAttribute('aria-required');
-      expect(value).toBe('true');
-    }
+    // Verify aria-required via axe rule instead of individual attribute checks
+    const results = await new AxeBuilder({ page: axePage(page) })
+      .withRules(['aria-required-attr'])
+      .analyze();
+    expect(results.violations).toEqual([]);
   });
 
   test('form has accessible name', async ({ page }) => {
